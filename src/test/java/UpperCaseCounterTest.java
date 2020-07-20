@@ -16,6 +16,10 @@ public class UpperCaseCounterTest {
         String str = null;
         int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
         assertThat(numberOfUpperCaseCharactersInString, is(0));
+
+        String str2 = "Hello";
+        int numberOfUpperCaseCharactersInString2 = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str2);
+        assertThat(numberOfUpperCaseCharactersInString2, is(0));
     }
 
     //반겂울 전달했을 때 0을 리턴하는지에 대한 테스트 작성
@@ -24,6 +28,10 @@ public class UpperCaseCounterTest {
         String str = "";
         int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
         assertThat(numberOfUpperCaseCharactersInString, is(0));
+
+        String str2 = "Bye";
+        int numberOfUpperCaseCharactersInString2 = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str2);
+        assertThat(numberOfUpperCaseCharactersInString2, is(0));
     }
 
     //대문자들이 포함된 문자열을 전달했을 때 카운팅된 숫자와 맞는지 검증하는 테스트 작성
@@ -39,6 +47,14 @@ public class UpperCaseCounterTest {
         assertFalse(numberOfUpperCaseCharactersInString == 9);
         //assertThat 단정문을 사용해서 True인 테스트 코드 작성
         assertThat(numberOfUpperCaseCharactersInString, is(10));
+        System.out.println("numberOfUpperCaseCharactersInString :: " + numberOfUpperCaseCharactersInString);
+
+        String str2 = "ZYX";
+        int numberOfUpperCaseCharactersInString2 = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str2);
+        assertThat(numberOfUpperCaseCharactersInString2, is(3));
+        assertTrue(numberOfUpperCaseCharactersInString2 == 3);
+        assertFalse(numberOfUpperCaseCharactersInString2 == 1);
+        System.out.println("numberOfUpperCaseCharactersInString2 :: " + numberOfUpperCaseCharactersInString2);
     }
 
     //대소문자가 섞여 있을 때 정확히 카운팅 되는 지에 대한 테스트 코드 작성
@@ -47,10 +63,17 @@ public class UpperCaseCounterTest {
         String str = "ABCdefGHI";
         int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
         //assertTrue로 맞는 테스트 코드 작성
+        assertTrue(result == 6);
         //assertFalse로 틀리는 값을 넣어 테스트 작성
+        assertFalse(result == 4);
         //assertThat 단정문을 사용해서 True인 테스트 코드 작성
         assertThat(result, is(6));
         System.out.println("result :: " + result);
+
+        String str2 = "abc";
+        int result2 = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str2);
+        assertThat(result2, is(0));
+        System.out.println("result2 :: " +result2);
     }
 
     //잘못된 값을 참조했을 때 IndexOutOfBoundsException Exception이 발생하는지 테스트 코드 작성
@@ -66,5 +89,6 @@ public class UpperCaseCounterTest {
     public void testShouldRunInLimitedTime() throws InterruptedException {
         Thread.sleep(4000);
         System.out.println("제한된 시간 내에 수행되면 테스트 Passed!");
+        //이부분은 Ignore때문에 실행되지 않는다.
     }
 }
