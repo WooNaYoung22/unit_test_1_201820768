@@ -80,6 +80,8 @@ public class UpperCaseCounterTest {
     @Test
     public void shouldThrowExceptionWhenGetZeroIndex() {
         new ArrayList<Object>().get(0);
+
+        new ArrayList<String>().get(1);
     }
 
     //해당 메소드가 제한된 시간내에 실행되는지에 대한 테스트 코드 작성 : timeout 사용
@@ -88,7 +90,8 @@ public class UpperCaseCounterTest {
     @Test
     public void testShouldRunInLimitedTime() throws InterruptedException {
         Thread.sleep(4000);
+        Thread.sleep(2000);
         System.out.println("제한된 시간 내에 수행되면 테스트 Passed!");
-        //이부분은 Ignore때문에 실행되지 않는다.
+        //전체 실행시켰을때 이부분은 Ignore때문에 실행안됨
     }
 }

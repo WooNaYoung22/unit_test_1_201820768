@@ -193,6 +193,7 @@ public class ChampionTest {
         assertTrue(champName.equals("다리우스"));
         assertFalse(champName.equals("레오나"));
         assertThat("다리우스", is(champName));
+        assertThat("탑", is(champName));
     }
 
 }
