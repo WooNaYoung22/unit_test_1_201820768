@@ -39,8 +39,9 @@ public class ChampionTest {
         List<String> emptyList = new ArrayList<>();
         //비어 있는지 테스트
         assertThat(emptyList, empty());
+        assertThat(emptyList.size(), is(0));
 
-        //championList 비어 있는지 테스트 (비어있지 않음)
+        //championList 비어 있는지 테스트 (안비어있음)
         assertThat(championList, empty());
     }
 
@@ -71,6 +72,7 @@ public class ChampionTest {
         String sampleString2 = "Player point";
         String startString = "Player";
         String endString = "point";
+
         String endString2 = "Focus";
 
         assertThat(sampleString1, anyOf(startsWith(startString), containsString(endString)));
@@ -86,6 +88,10 @@ public class ChampionTest {
     public void testForFloatingPoint() {
         assertThat(3.14, closeTo(3, 0.2));
 
+    }
+
+    @Test
+    public void 부동소수점범위테스트(){
         assertThat(3.14, closeTo(3,0.1));
     }
 
@@ -95,7 +101,7 @@ public class ChampionTest {
         //championList에서 어떤 값이든 가져오는지
         assertThat(championList.get(2), anything());
         //anything은 null값도 통과한다.
-        //6은 없는 값
+        //index 6은 없는 값
         assertThat(championList.get(6), anything());
     }
 
@@ -105,11 +111,13 @@ public class ChampionTest {
         //배열의 크기 체크, int 값을 비교
         assertTrue(championList.size() == 5);
         assertThat(championList.size(), is(5));
+        assertFalse(championList.size() == 4);
 
         //객체 자체를 통으로 체크
         assertThat(championList, hasSize(5));
 
-        assertFalse(championList.size() == 4);
+        List<Champion> emptyList = new ArrayList<Champion>();
+        assertThat(emptyList, hasSize(0));
     }
 
     //서폿 챔피언은 타릭이어야 한다라는 조건으로 테스트 코드 작성
@@ -120,6 +128,8 @@ public class ChampionTest {
         assertThat("타릭", is(supportChamp.getName()));
         assertThat("타릭", is(equalTo(supportChamp.getName())));
         assertThat("타릭", equalTo(supportChamp.getName()));
+
+        assertThat("레오나", is(supportChamp.getName()));
     }
 
     @Test
@@ -157,6 +167,8 @@ public class ChampionTest {
         assertThat(champListNames.get(3), hasToString("갈리오"));
         assertThat(champListNames.get(4), hasToString("모르가느"));
         assertThat(champListNames.get(5), hasToString("블라디미르"));
+
+        assertThat(championList.get(4).getName(), hasToString("레오나"));
     }
 
     @Test
